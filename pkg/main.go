@@ -1,2 +1,5 @@
 package pkg
 
+func API() {
+
+}

@@ -1,9 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+)
+
+var (
+	prunus DB
 )
 
 func main() {
-	fmt.Println("Hello, World!")
+	r := mux.NewRouter()
+	r.HandleFunc("/register", UserRegisterHandler)
+	r.HandleFunc("/users", GetUsersHandler)
+	log.Info("Started Webserver.")
+	http.ListenAndServe(":8080", r)
 }
